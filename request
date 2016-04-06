@@ -1,0 +1,18 @@
+hello,
+
+I have a request for the ES fastpack you are developing. Is there a way you can create measures for different indices (like index name, doc count, delete count, health, status, pri, rep, store size, etc..)
+The below command will pull those values:
+curl -XGET http://chdd-es01.cps.local:9200/_cat/indices?v
+
+That way we can create a dashbord for index health. The dashboard can have tables for each measure (doc count, delete count, health, etc..) 
+
+For ex: We can have a dashlet table for measure 'document count' which would have splittings by index name.
+
+below is the command to extract doc count for each index:
+curl -XGET http://chdd-es01.cps.local:9200/_cat/indices?v | awk "{print $3, $6}"
+
+example output:
+index docs.count
+unilog_04 99377
+cps_documents 495303
+customer_alias-20160331 160917
